@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Req, Res} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Req, Res, UseGuards} from '@nestjs/common';
 import { Request, Response } from 'express';
+import { JwtAuthGuard } from 'src/user/auth/jwt-auth.guard';
 import { Todo } from '../entities/Todo.entity';
 import { AddTodoDto } from './dto/add-todo.dto';
 import { GetPaginatedTodo } from './dto/get-paginated-todos.dto';
@@ -10,7 +11,8 @@ export class TodoAppController {
 
     todos : Todo[] ;    
     constructor(private readonly todoService: TodoAppService) {}
-
+    
+    @UseGuards(JwtAuthGuard)
     @Get('getall')
     async getTodos(@Req() request : Request, @Res() response : Response, @Query() query: GetPaginatedTodo ) : Promise<any> {
         response.json(await this.todoService.getTodos());
