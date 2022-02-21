@@ -7,8 +7,11 @@ export class User{
     id:number
     @Column()
     password : string
-    @Column()
-    role : string
+    @Column({
+        type : "enum",
+        enum : UserRoleEnum
+    })
+    role : UserRoleEnum
     @CreateDateColumn()
     createdAt : Date;
 }

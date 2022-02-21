@@ -48,7 +48,8 @@ export class UserService {
             }
             const jwt_token= this.jwtService.sign(payload);
             return({
-                "access_token" : jwt_token
+                "access_token" : jwt_token,
+                "role" : userRequest.role
             })
         }
     }

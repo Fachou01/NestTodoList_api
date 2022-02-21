@@ -19,21 +19,25 @@ export class TodoAppController {
         /*console.log(query);
         console.log(query.page)*/
     }
+    @UseGuards(JwtAuthGuard)
     @Get('gettodo/:id')
     async getTodoById(@Req() request : Request, @Res() response : Response , @Param('id',ParseIntPipe) id, ) : Promise<any>{
         response.json(await this.todoService.getTodobyId(id));
     }
 
+    @UseGuards(JwtAuthGuard)
     @Post('add')
     async addTodo(@Body() newTodo : AddTodoDto) : Promise<Todo>{
         //console.log(newTodo);
         console.log(newTodo);
         return await this.todoService.addTodos(newTodo);
     }
+    @UseGuards(JwtAuthGuard)
     @Delete('delete/:id')
     async deleteTodo(@Req() request : Request, @Res() response : Response , @Param('id',ParseIntPipe) id, ) : Promise<any>{
         response.json(await this.todoService.deleteTodos(id));
     }
+    @UseGuards(JwtAuthGuard)
     @Put("update/:id")
     async updateTodo(
         @Req() request : Request, 
