@@ -1,17 +1,19 @@
-import { UserRoleEnum } from "src/user/enums/user-role.enum";
-import { Column, CreateDateColumn, Entity, PrimaryColumn} from "typeorm"
+import { UserRoleEnum } from '../user/enums/user-role.enum';
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('user')
-export class User{
-    @PrimaryColumn()
-    id:number
-    @Column()
-    password : string
-    @Column({
+export class User {
+  @PrimaryColumn()
+  id: number;
+  @Column()
+  password: string;
+  @Column(
+      {
         type : "enum",
-        enum : UserRoleEnum
-    })
-    role : UserRoleEnum
-    @CreateDateColumn()
-    createdAt : Date;
+      enum : UserRoleEnum
+      }
+  )
+  role: UserRoleEnum;
+  @CreateDateColumn()
+  createdAt: Date;
 }

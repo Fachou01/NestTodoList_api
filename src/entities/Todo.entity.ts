@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity('todo')
