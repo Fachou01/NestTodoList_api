@@ -1,5 +1,5 @@
-import {IsEnum, IsNotEmpty, IsNumber, IsString } from "class-validator";
-import { UserRoleEnum } from "../enums/user-role.enum";
+import {IsEnum, IsNotEmpty, IsNumber, IsString} from "class-validator";
+import {UserRoleEnum} from "../enums/user-role.enum";
 
 export class UserInscriptionDto{
 
