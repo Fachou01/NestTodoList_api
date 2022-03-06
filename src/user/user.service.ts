@@ -6,6 +6,7 @@ import { User } from 'src/entities/User.entity';
 import { Repository } from 'typeorm';
 import { UserInscriptionDto } from './dto/user-inscription.dto';
 import { UserLoginDto } from './dto/user-login.dto';
+import {CompaignEntity} from "../entities/compaign.entity";
 
 @Injectable()
 export class UserService {
@@ -33,24 +34,30 @@ export class UserService {
             id : user.id,
             password : user.password
         });
+        const message =  "user or password is invalid !";
         console.log(userRequest);
         if(!userRequest){
             console.log("user not found !");
-             return({
-                "message" : "user or password is invalid !"
-            })
+             return(message);
             
         }else{
             const payload = {
                 id: userRequest.id,
-                password : userRequest.password,
+                //password : userRequest.password,
                 role : userRequest.role
             }
+            console.log(payload);
             const jwt_token= this.jwtService.sign(payload);
             return({
                 "access_token" : jwt_token,
-                "role" : userRequest.role
+                "role" : payload.role
             })
         }
+    }
+    async updateUser(id: number,newUser : Partial<User>) : Promise<any>{
+        return (await this.userRepository.update({id:id},newUser));
+    }
+    async deleteUser(id: number) : Promise<any> {
+        return await this.userRepository.delete({id: id});
     }
 }
