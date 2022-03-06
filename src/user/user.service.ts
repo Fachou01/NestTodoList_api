@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { identity } from 'rxjs';
+//import { identity } from 'rxjs';
 import { User } from 'src/entities/User.entity';
 import { Repository } from 'typeorm';
 import { UserInscriptionDto } from './dto/user-inscription.dto';
