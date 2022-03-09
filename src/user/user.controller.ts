@@ -17,6 +17,13 @@ export class UserController {
         response.json(await this.userService.getAllUsers());
     }
 
+    @UseGuards(JwtAuthGuard)
+    @Get('getbyid/:id')
+    async getUserById(@Res() response : Response, @Param('id' , ParseIntPipe) id : number) : Promise<any>{
+        response.json(await this.userService.getUserById(id));
+    }
+
+    @UseGuards(JwtAuthGuard)
     @Post('add')
     async addUser(@Req() request : Request , @Res() response : Response , @Body() newUser : UserInscriptionDto) : Promise<any>{
         response.json(await this.userService.addUser(newUser));
@@ -27,16 +34,18 @@ export class UserController {
         response.json(await this.userService.loginUser(user));
     }
 
+    @UseGuards(JwtAuthGuard)
     @Delete('delete/:id')
     async deleteTodo(@Req() request : Request, @Res() response : Response , @Param('id',ParseIntPipe) id, ) : Promise<any>{
         response.json(await this.userService.deleteUser(id));
     }
 
+    @UseGuards(JwtAuthGuard)
     @Put("update/:id")
     async updateTodo(
         @Req() request : Request,
         @Res() response : Response ,
-        @Param('id',ParseIntPipe)id,
+        @Param('id',ParseIntPipe) id,
         @Body() user : Partial<UserInscriptionDto> ) : Promise<any>{
         console.log(typeof id);
         response.json(await  this.userService.updateUser(id,user));

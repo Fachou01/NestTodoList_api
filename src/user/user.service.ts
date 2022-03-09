@@ -20,6 +20,10 @@ export class UserService {
         return(await this.userRepository.find());
     }
 
+    async getUserById(id : number) : Promise<User>{
+         return (await this.userRepository.findOne(id));
+    }
+
     async addUser(newUser : UserInscriptionDto) : Promise<User>{
         const {id,password,role} = newUser;
         const user = new User;
