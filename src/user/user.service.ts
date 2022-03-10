@@ -39,9 +39,9 @@ export class UserService {
             password : user.password
         });
         const message =  "user or password is invalid !";
-        console.log(userRequest);
+        //console.log(userRequest);
         if(!userRequest){
-            console.log("user not found !");
+            //console.log("user not found !");
              return(message);
             
         }else{
@@ -50,7 +50,7 @@ export class UserService {
                 //password : userRequest.password,
                 role : userRequest.role
             }
-            console.log(payload);
+            //console.log(payload);
             const jwt_token= this.jwtService.sign(payload);
             return({
                 "access_token" : jwt_token,

@@ -1,5 +1,5 @@
 import { UserRoleEnum } from '../user/enums/user-role.enum';
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, IsNull, PrimaryColumn } from 'typeorm';
 
 @Entity('user')
 export class User {
@@ -7,9 +7,20 @@ export class User {
   id: number;
   @Column()
   password: string;
+  @Column({
+    nullable: true,
+})
+  firstName: string;
+
+   @Column({
+    nullable: true,
+})
+  addPermission: string;
+
   @Column(
       {
-        type : "enum",
+      nullable : true,
+      type : "enum",
       enum : UserRoleEnum
       }
   )

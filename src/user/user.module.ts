@@ -8,6 +8,7 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import * as dotenv from 'dotenv'
 import { JwtStrategy } from 'src/user/auth/jwt.strategy';
+import { AddPermissionGuard } from './auth/add-permission.guard';
 
 dotenv.config();
 @Module({
@@ -23,6 +24,6 @@ dotenv.config();
   ],
 
   controllers: [UserController],
-  providers: [UserService,JwtStrategy]
+  providers: [UserService,JwtStrategy,AddPermissionGuard]
 })
 export class UserModule {}

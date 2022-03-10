@@ -5,6 +5,7 @@ import { UserInscriptionDto } from './dto/user-inscription.dto';
 import { UserLoginDto } from './dto/user-login.dto';
 import { UserService } from './user.service';
 import {AddCompaignDto} from "../todo-app/dto/add-compaign-dto";
+import { AddPermissionGuard } from './auth/add-permission.guard';
 
 @Controller('user')
 export class UserController {
@@ -23,7 +24,14 @@ export class UserController {
         response.json(await this.userService.getUserById(id));
     }
 
+    
     @UseGuards(JwtAuthGuard)
+    @Get('getconnecteduser')
+    getConnecteduser(@Req() request : Request,@Res() response : Response) : any{
+       response.json(request.user);
+    }
+
+    @UseGuards(JwtAuthGuard,AddPermissionGuard)
     @Post('add')
     async addUser(@Req() request : Request , @Res() response : Response , @Body() newUser : UserInscriptionDto) : Promise<any>{
         response.json(await this.userService.addUser(newUser));
