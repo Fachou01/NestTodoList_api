@@ -1,4 +1,4 @@
-import {IsEnum, IsNotEmpty, IsNumber, IsString} from "class-validator";
+import {IsDate, IsEnum, IsNotEmpty, IsNumber, isString, IsString} from "class-validator";
 import {UserRoleEnum} from "../enums/user-role.enum";
 
 export class UserInscriptionDto{
@@ -8,6 +8,12 @@ export class UserInscriptionDto{
     id : number
 
     @IsString()
+    firstName: string 
+
+    @IsString()
+    addPermission: string 
+
+    @IsString()
     @IsNotEmpty()
     password : string
     
@@ -15,4 +21,7 @@ export class UserInscriptionDto{
     @IsNotEmpty()
     @IsEnum(UserRoleEnum)
     role : UserRoleEnum
+
+    createdAt: Date;
+
 }

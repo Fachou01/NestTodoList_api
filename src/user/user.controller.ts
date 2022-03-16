@@ -31,7 +31,7 @@ export class UserController {
        response.json(request.user);
     }
 
-    @UseGuards(JwtAuthGuard,AddPermissionGuard)
+    @UseGuards(JwtAuthGuard)
     @Post('add')
     async addUser(@Req() request : Request , @Res() response : Response , @Body() newUser : UserInscriptionDto) : Promise<any>{
         response.json(await this.userService.addUser(newUser));
